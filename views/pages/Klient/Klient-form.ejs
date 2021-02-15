@@ -1,0 +1,95 @@
+﻿<%- include('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationKlientForm.js"></script>
+        <script type="application/javascript" src="/js/validationCommon.js"></script>
+        <h2>
+            <%= pageTitle%>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+            <!--  onsubmit="return validateForm();" -->
+            <input type="hidden" name="_id" value="<%= Klient._id %>">
+
+            <label for="firstName">Imię:<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= Klient.firstName %>"
+                class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorFirstName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('firstName'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('firstName')).message %>
+                        <% } %>
+            </span>
+
+            <label for="lastName">Nazwisko:<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= Klient.lastName %>"
+                class="<%= validationErrors.find(e=>
+            e.path.includes('lastName')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorLastName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('lastName'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('lastName')).message %>
+                        <% } %>
+            </span>
+
+            <label for="numerTelefonu">NumerTelefonu:<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="numerTelefonu" id="numerTelefonu" placeholder="9-14 znaków"
+                value="<%= Klient.numerTelefonu %>" class="<%=validationErrors.find(e=>
+                e.path.includes('numerTelefonu')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled'
+                : '' %> />
+            <span id="errorPhoneNumber" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('numerTelefonu'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('numerTelefonu')).message %>
+                        <% } %>
+            </span>
+            <% if (formMode=='showDetails' ) { %>
+                <div class="form-buttons">
+                    <a class="list-actions-button-edit" href="/Klient/edit/<%= Klient._id %>">Edytuj</a>
+                </div>
+                <% } %>
+
+                    <div class="form-buttons">
+                        <p id="errorsSummary" class="errors-text"></p>
+
+                        <% if (formMode !='showDetails' ) { %>
+                            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                            <a class="form-button-cancel" href="/Klient">Anuluj</a>
+                            <% } else { %>
+                                <a class="form-button-cancel" href="/Klient">Powrót</a>
+                                <% } %>
+                    </div>
+
+        </form>
+
+        <% if (formMode=='showDetails' || formMode=='edit' ) { %>
+            <h2>Szczegóły wszystkich podróży</h2>
+
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Lot</th>
+                        <th>Numer samolotu</th>
+                        <th>Numer miejsca</th>
+                        <th>Numer bagażu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let k of Klient.tickets) { %>
+                        <tr>
+                            <td><a href="/plane/plane-details/<%= k.plane._id %>">
+                                    <%= k.plane.name %>
+                                </a></td>
+                            <td>
+                                <%= k.plane.planeNumber %>
+                            </td>
+                            <td>
+                                <%= k.sittingPlace %>
+                            </td>
+                            <td>
+                                <%= k.baggageNumber %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <% } %>
+
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

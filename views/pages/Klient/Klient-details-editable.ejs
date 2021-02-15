@@ -1,0 +1,31 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>Szczegóły klienta</h2>
+        <form class="form">
+
+            <label for="firstName">Imię:<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="firstName" id="firstName">
+                <option value="">Jan</option>
+            </select>
+            <span id="errorFirstName" class="errors-text"></span>
+
+            <label for="lastName">Nazwisko:<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="lastName" id="lastName">
+                <option value="">Kowalski</option>
+            </select>
+            <span id="errorLastName" class="errors-text"></span>
+
+            <label for="numerTelefonu">NumerTelefonu:<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="numerTelefonu" id="numerTelefonu">
+                <option value="">501-123-423</option>
+            </select>
+            <span id="errorPhoneNumber" class="errors-text"></span>
+
+            <p><a class="list-actions-button-edit" href="">Edytuj</a></p>
+        </form>
+
+
+        <p><a class="list-actions-button-details" href="../pages/Klient-list.html">Powrót</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

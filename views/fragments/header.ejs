@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Pruszków Airport</title>
+</head>
+
+<body>
+    <header>
+        <h1>Pruszkow Airport </h1>
+        <img src="/images/plane.png" width="100" height="100" alt="Pruszkow Airport">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona główna</a></li>
+            <li><a href="/Klient" class="<%= navLocation == 'Klient' ? 'active' : ''%>">Klienci</a></li>
+            <li><a href="/plane" class="<%= navLocation == 'plane' ? 'active' : ''%>">Loty</a></li>
+            <li><a href="/ticket" class="<%= navLocation == 'ticket' ? 'active' : ''%>">Bilety</a></li>
+
+
+        </ul>
+    </nav>

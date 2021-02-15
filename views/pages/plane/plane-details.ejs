@@ -1,0 +1,56 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>Szczegóły lotu</h2>
+        <form class="form">
+
+            <label for="name">Nazwa samolotu:</label>
+            <input type="text" name="name" value="Biały Orzeł" id="name" disabled />
+
+            <label for="planeNumber">Numer samolotu:</label>
+            <input type="number" name="planeNumber" value=29771 id="planeNumber" disabled />
+
+            <label for="destination">Kierunek:</label>
+            <input type="text" name="destination" value="Ohio" id="destination" disabled />
+
+            <label for="date">Data:</label>
+            <input type="date" name="date" value="2019-04-05" id="date" disabled />
+
+
+            <p><a class="list-actions-button-edit" href="../pages/plane-details-editable.html">Edytuj</a></p>
+        </form>
+
+        <h3>Szczegóły wszystkich klientów</h3>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Imie</th>
+                    <th>Nazwisko</th>
+                    <th>Numer telefonu</th>
+                    <th>Numer miejsca</th>
+                    <th>Numer bagazu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jan</td>
+                    <td>Kowalski</td>
+                    <td>501-123-423</td>
+                    <td>A03</td>
+                    <td>91234</td>
+                </tr>
+                <tr>
+                    <td>Anna</td>
+                    <td>Owca</td>
+                    <td>585-123-512</td>
+                    <td>G11</td>
+                    <td>257622</td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        <p><a class="list-actions-button-details" href="../pages/plane-list.html">Powrót</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

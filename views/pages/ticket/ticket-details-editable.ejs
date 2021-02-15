@@ -1,0 +1,31 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły biletu</h2>
+        <form class="form">
+
+            <label for="KlientData">Klient<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="KlientData" id="KlientData">
+                <option value="">Jan Kowalski</option>
+            </select>
+
+            <label for="name">Lot<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="name" id="name">
+                <option value="">Biały Orzeł</option>
+            </select>
+
+            <label for="sittingPlace">Numer miejsca<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="sittingPlace" id="sittingPlace">
+                <option value="">A01</option>
+                <option value="">A02</option>
+            </select>
+
+            <label for="baggageNumber">Numer bagażu<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="baggageNumber" id="baggageNumber">
+                <option value="">012356</option>
+            </select>
+
+            <p><a class="list-actions-button-edit" href="../pages/ticket-details-editable.html">Edytuj</a></p>
+        </form>
+        <p><a class="list-actions-button-details" href="../pages/ticket-list.html">Powrót</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

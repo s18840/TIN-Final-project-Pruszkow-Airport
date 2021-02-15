@@ -1,0 +1,48 @@
+﻿<%- include('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>Szczegóły klienta</h2>
+        <form class="form">
+
+            <label for="firstName">Imię:</label>
+            <input type="text" name="firstName" value="Jan" id="firstName" disabled />
+            <span id="errorFirstName" class="errors-text"></span>
+
+            <label for="lastName">Nazwisko:</label>
+            <input type="text" name="lastName" value="Kowalski" id="lastName" disabled />
+            <span id="errorLastName" class="errors-text"></span>
+
+            <label for="numerTelefonu">NumerTelefonu:</label>
+            <input type="text" name="numerTelefonu" value="501-123-423" id="numerTelefonu" disabled />
+            <span id="errorPhoneNumber" class="errors-text"></span>
+
+            <p><a class="list-actions-button-edit" href="../pages/Klient-details-editable.html">Edytuj</a></p>
+        </form>
+
+        <h3>Szczegóły wszystkich podróży</h3>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Lot</th>
+                    <th>Numer miejsca</th>
+                    <th>Numer bagażu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Biały Orzeł</td>
+                    <td>A03</td>
+                    <td>91234</td>
+                </tr>
+                <tr>
+                    <td>Czarny Bocian</td>
+                    <td>G11</td>
+                    <td>257622</td>
+
+                </tr>
+
+            </tbody>
+        </table>
+        <p><a class="list-actions-button-details" href="../pages/Klient-list.html">Powrót</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

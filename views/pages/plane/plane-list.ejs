@@ -1,0 +1,47 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Lista Lotów</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Numer samolotu</th>
+                    <th>Kierunek</th>
+                    <th>Data</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let plane of planes) { %>
+                    <tr>
+                        <td>
+                            <%= plane.name %>
+                        </td>
+                        <td>
+                            <%= plane.planeNumber %>
+                        </td>
+                        <td>
+                            <%= plane.destination %>
+                        </td>
+                        <td>
+                            <%= plane.date.toISOString().split('T')[0] %>
+                        </td>
+                        <td>
+                            <ul class="list-actions">
+                                <li><a href="/plane/details/<%=plane._id%>"
+                                        class="list-actions-button-details">Szczegóły</a></li>
+                                <li><a href="/plane/edit/<%=plane._id%>" class="list-actions-button-edit">Edytuj</a>
+                                </li>
+                                <li><a href="/plane/delete/<%=plane._id%>" class="list-actions-button-delete">Usuń</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+        <p>
+            <a class="button-add" href="/plane/add">Dodaj nowy lot</a>
+        </p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

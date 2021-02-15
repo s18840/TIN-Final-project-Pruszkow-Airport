@@ -1,0 +1,98 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationTicketForm.js"></script>
+        <script type="application/javascript" src="/js/validationCommon.js"></script>
+        <h2>
+            <%= pageTitle%>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate>
+            <!--  onsubmit="return validateForm();" -->
+            <input type="hidden" name="_id" value="<%= ticket._id %>">
+
+            <label for="KlientData">Klient<abbr title="required" aria-label="required">*</abbr></label>
+            <select id="Klient_id" name="Klient_id" required class="
+            <%= validationErrors.find(e=>
+                e.path.includes('Klient_id')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : ''
+                %>>
+                <% if (formMode !='edit' ){ %>
+                    <option value="" selected="selected">--Wybierz Klienta--</option>
+                    <% } %>
+                        <% for (let i=0; i<allKlients.length; i++) { let Klient=allKlients[i]; %>
+                            <option value="<%= Klient._id %>" label="<%= Klient.firstName + ' ' + Klient.lastName %>"
+                                <%=(ticket._id && Klient._id.toString()==ticket.Klient._id.toString()) ? 'selected' : ''
+                                %>>
+                            </option>
+                            <% } %>
+
+            </select>
+            <span id="errorKlient_id" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Klient_id'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Klient_id')).message %>
+                        <% } %>
+            </span>
+
+            <label for="name">Lot<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="plane_id" id="plane_id" required class="<%=
+                    validationErrors.find(e=>
+                    e.path.includes('plane_id')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled'
+                : '' %> >
+                <% if (formMode !='edit' ){ %>
+                    <option value="" selected="selected">--Wybierz Lot--</option>
+                    <% } %>
+                        <%for (let i=0; i<allPlanes.length; i++) {let plane=allPlanes[i]; %>
+                            <option value="<%= plane._id %>" label="<%= plane.name%>" <%=(ticket._id &&
+                                plane._id.toString()==ticket.plane._id.toString()) ? 'selected' : '' %>></option>
+                            <% } %>
+            </select>
+            <span id="errorplane_id" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('plane_id'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('plane_id')).message %>
+                        <% } %>
+            </span>
+
+            <label for="sittingPlace">Numer miejsca<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="sittingPlace" id="sittingPlace" placeholder="np: A01"
+                value="<%=ticket.sittingPlace%>" class="<%=
+                validationErrors.find(e=>
+                e.path.includes('sittingPlace')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled'
+                : '' %> />
+            <span id="errorSittingPlace" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('sittingPlace'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('sittingPlace')).message %>
+                        <% } %>
+            </span>
+
+            <label for="baggageNumber">Numer bagażu<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="number" name="baggageNumber" id="baggageNumber" placeholder="np: 1234"
+                value="<%=ticket.baggageNumber%>" class="<%=
+                    validationErrors.find(e=>
+                    e.path.includes('baggageNumber')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %> />
+            <span id="errorBaggageNumber" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('baggageNumber'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('baggageNumber')).message %>
+                        <% } %>
+            </span>
+
+            <% if (formMode=='showDetails' ) { %>
+                <div class="form-buttons">
+                    <a class="list-actions-button-edit" href="/ticket/edit/<%= ticket._id %>">Edytuj</a>
+                </div>
+                <% } %>
+
+                    <div class="form-buttons">
+                        <p id="errorsSummary" class="errors-text"></p>
+
+                        <% if (formMode !='showDetails' ) { %>
+                            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                            <a class="form-button-cancel" href="/ticket">Anuluj</a>
+                            <% } else { %>
+                                <a class="form-button-cancel" href="/ticket">Powrót</a>
+                                <% } %>
+                    </div>
+
+        </form>
+
+
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

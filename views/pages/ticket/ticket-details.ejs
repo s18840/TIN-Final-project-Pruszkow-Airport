@@ -1,0 +1,22 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły biletu</h2>
+        <form class="form">
+
+            <label for="KlientData">Klient</label>
+            <input type="text" name="KlientData" value="Jan Kowalski" id="KlientData" disabled />
+
+            <label for="name">Lot</label>
+            <input type="text" name="name" value="Biały Orzeł" id="name" disabled />
+
+            <label for="sittingPlace">Numer miejsca</label>
+            <input type="text" name="sittingPlace" value="A01" id="sittingPlace" disabled />
+
+            <label for="baggageNumber">Numer bagażu</label>
+            <input type="number" name="baggageNumber" value="02123" id="baggageNumber" disabled />
+
+            <p><a class="list-actions-button-edit" href="../pages/ticket-details-editable.html">Edytuj</a></p>
+        </form>
+        <p><a class="list-actions-button-details" href="../pages/ticket-list.html">Powrót</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

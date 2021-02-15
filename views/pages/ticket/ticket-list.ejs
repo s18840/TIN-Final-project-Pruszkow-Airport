@@ -1,0 +1,43 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Lista Biletów</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Lot</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let ticket of tickets) { %>
+                    <tr>
+                        <td>
+                            <%= ticket.Klient.firstName %>
+                        </td>
+                        <td>
+                            <%= ticket.Klient.lastName %>
+                        </td>
+                        <td>
+                            <%= ticket.plane.name %>
+                        </td>
+                        <td>
+                            <ul class="list-actions">
+                                <li><a href="/ticket/details/<%=ticket._id%>"
+                                        class="list-actions-button-details">Szczegóły</a></li>
+                                <li><a href="/ticket/edit/<%=ticket._id%>" class="list-actions-button-edit">Edytuj</a>
+                                </li>
+                                <li><a href="/ticket/delete/<%=ticket._id%>" class="list-actions-button-delete">Usuń</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+        <p>
+            <a class="button-add" href="/ticket/add">Dodaj nowy bilet</a>
+        </p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

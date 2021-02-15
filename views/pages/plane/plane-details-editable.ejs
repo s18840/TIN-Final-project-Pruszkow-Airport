@@ -1,0 +1,34 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+
+        <h2>Szczegóły Lotu</h2>
+        <form class="form">
+
+            <label for="name">Nazwa samolotu:<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="name" id="name">
+                <option value="">Biały Orzeł</option>
+                <option value="">Czarny Bocian</option>
+            </select>
+
+            <label for="planeNumber">Numer samolotu:<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="planeNumber" id="planeNumber">
+                <option value="">29771</option>
+                <option value="">12442</option>
+                <option value="">12451</option>
+                <option value="">87234</option>
+            </select>
+
+            <label for="destination">Kierunek:<abbr title="required" aria-label="required">*</abbr></label>
+            <select name="destination" id="destination">
+                <option value="">Ohio</option>
+            </select>
+
+            <label for="date">Data:<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="date" name="date" value="2019-04-05" id="date" />
+
+
+            <p><a class="list-actions-button-edit" href="../pages/plane-details-editable.html">Edytuj</a></p>
+        </form>
+        <p><a class="list-actions-button-details" href="../pages/plane-list.html">Powrót</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

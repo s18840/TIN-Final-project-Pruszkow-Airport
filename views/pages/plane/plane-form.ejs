@@ -1,0 +1,113 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationPlaneForm.js"></script>
+        <script type="application/javascript" src="/js/validationCommon.js"></script>
+        <h2>
+            <%= pageTitle%>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+            <!--  onsubmit="return validateForm();" -->
+            <input type="hidden" name="_id" value="<%= plane._id %>">
+
+            <label for="name">Nazwa lotu<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="name" id="name" placeholder="2-20 znaków" value="<%= plane.name %>" class="<%= validationErrors.find(e=>
+                e.path.includes('name')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                        <% } %>
+            </span>
+
+            <label for="planeNumber">Numer lotu<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="number" name="planeNumber" id="planeNumber" placeholder="2-9 znaków"
+                value="<%= plane.planeNumber %>" class="<%=validationErrors.find(e=>
+                e.path.includes('planeNumber')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled'
+                : '' %>/>
+            <span id="errorPlaneNumber" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('planeNumber'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('planeNumber')).message %>
+                        <% } %>
+            </span>
+
+            <label for="destination">Kierunek<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="destination" id="destination" placeholder="2-60 znaków"
+                value="<%= plane.destination %>"
+                class="<%=validationErrors.find(e=>e.path.includes('destination')) ? 'error-input' : '' %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorDestination" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('destination'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('destination')).message %>
+                        <% } %>
+            </span>
+
+            <label for="date">Data<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="date" name="date" id="date"
+                value="<%=(formMode=='createNew') ? '': plane.date.toISOString().split('T')[0] %>" class="<%= validationErrors.find(e=>
+                e.path.includes('date')) ? 'error-input' : '' %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorDate" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('date'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('date')).message %>
+                        <% } %>
+            </span>
+
+            <% if (formMode=='showDetails' ) { %>
+                <div class="form-buttons">
+                    <a class="list-actions-button-edit" href="/plane/edit/<%= plane._id %>">Edytuj</a>
+                </div>
+                <% } %>
+
+                    <div class="form-buttons">
+                        <p id="errorsSummary" class="errors-text"></p>
+
+                        <% if (formMode !='showDetails' ) { %>
+                            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                            <a class="form-button-cancel" href="/plane">Anuluj</a>
+                            <% } else { %>
+                                <a class="form-button-cancel" href="/plane">Powrót</a>
+                                <% } %>
+                    </div>
+
+        </form>
+
+
+        <% if (formMode=='showDetails' || formMode=='edit' ) { %>
+            <h2>Szczegóły wszystkich podróży</h2>
+
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Imie</th>
+                        <th>Nazwisko</th>
+                        <th>Numer telefonu</th>
+                        <th>Numer miejsca</th>
+                        <th>Numer bagażu</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% for (let p of plane.tickets) { %>
+                        <tr>
+                            <td><a href="/Klient/Klient-details/<%= p.Klient._id %>">
+                                    <%= p.Klient.firstName %>
+                                </a></td>
+                            <td>
+                                <%= p.Klient.lastName %>
+                            </td>
+                            <td>
+                                <%= p.Klient.numerTelefonu%>
+                            </td>
+                            <td>
+                                <%= p.sittingPlace%>
+                            </td>
+                            <td>
+                                <%= p.baggageNumber%>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <% } %>
+
+
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

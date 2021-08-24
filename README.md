@@ -1,2 +1,2 @@
 # TIN
-Basic js site about Pruszkow Airport with connection to DB
+Basic JS site about Pruszkow Airport with connection to Database.
